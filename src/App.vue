@@ -4,11 +4,7 @@
       <div class="todo-wrap">
         <!-- 头部 -->
         <Top @addTodo="addTodo"></Top>
-        <List
-          :todo="todos"
-          :checkTodo="checkTodo"
-          :deleteTodo="deleteTodo"
-        ></List>
+        <List :todo="todos"></List>
         <MyFooter
           :todo="todos"
           @checkAllTodo="checkAllTodo"
@@ -69,6 +65,13 @@ export default {
         localStorage.setItem('todos', JSON.stringify(value))
       }
     }
+  },
+  mounted() {
+    this.$bus.$on('checkTodo', this.checkTodo)
+    this.$bus.$on('deleteTodo', this.deleteTodo)
+  },
+  beforeDestroy() {
+    this.$bus.$off(['checkTodo', 'deleteTodo'])
   }
 }
 </script>

@@ -18,14 +18,16 @@ export default {
   data() {
     return {}
   },
-  props: ['todo', 'checkTodo', 'deleteTodo'],
+  props: ['todo'],
   methods: {
     handleCheck(id) {
-      this.checkTodo(id)
+      // this.checkTodo(id)
+      this.$bus.$emit('checkTodo', id)
     },
     handleDelete(id) {
       if (confirm('确定删除？')) {
-        this.deleteTodo(id)
+        // this.deleteTodo(id)
+        this.$bus.$emit('deleteTodo', id)
       }
     }
   }
