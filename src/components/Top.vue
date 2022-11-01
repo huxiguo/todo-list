@@ -13,7 +13,7 @@
 import { nanoid } from 'nanoid'
 export default {
   name: 'Top',
-  props: ['addTodo'],
+  // props: ['addTodo'],
   data() {
     return {
       title: ''
@@ -26,7 +26,7 @@ export default {
         title: this.title,
         done: false
       }
-      this.addTodo(todoObj)
+      this.$emit('addTodo', todoObj)
       this.title = ''
     }
   }

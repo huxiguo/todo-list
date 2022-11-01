@@ -3,7 +3,7 @@
     <div class="todo-container">
       <div class="todo-wrap">
         <!-- 头部 -->
-        <Top :addTodo="addTodo"></Top>
+        <Top @addTodo="addTodo"></Top>
         <List
           :todo="todos"
           :checkTodo="checkTodo"
@@ -11,8 +11,8 @@
         ></List>
         <MyFooter
           :todo="todos"
-          :checkAllTodo="checkAllTodo"
-          :clearAllTodo="clearAllTodo"
+          @checkAllTodo="checkAllTodo"
+          @clearAllTodo="clearAllTodo"
         ></MyFooter>
       </div>
     </div>

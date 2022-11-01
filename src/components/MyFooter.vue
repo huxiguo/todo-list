@@ -11,15 +11,18 @@
 </template>
 
 <script>
+import { set } from 'vue'
 export default {
   name: 'Footer',
-  props: ['todo', 'checkAllTodo', 'clearAllTodo'],
+  props: ['todo'],
   methods: {
     checkAll(e) {
-      this.checkAllTodo(e.target.checked)
+      // this.checkAllTodo(e.target.checked)
+      this.$emit('checkAllTodo', e.target.checked)
     },
     clearAll() {
-      this.clearAllTodo()
+      // this.clearAllTodo()
+      this.$emit('clearAllTodo')
     }
   },
   computed: {
@@ -28,8 +31,13 @@ export default {
         return pre + (current.done ? 1 : 0)
       }, 0)
     },
-    isAll() {
-      return this.doneTotal === this.todo.length && this.todo.length > 0
+    isAll: {
+      get() {
+        return this.doneTotal === this.todo.length && this.todo.length > 0
+      },
+      set(value) {
+        this.$emit('checkAllTodo', value)
+      }
     }
   }
 }
