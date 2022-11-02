@@ -1,18 +1,28 @@
 <template>
-  <li>
-    <label>
-      <input
-        type="checkbox"
-        :checked="todo.done"
-        @change="handleCheck(todo.id)"
-      />
-      <span>{{ todo.title }}</span>
-    </label>
-    <button class="btn btn-danger" @click="handleDelete(todo.id)">删除</button>
-  </li>
+  <transition
+    name="animate__animated animate__bounce"
+    appear
+    enter-active-class="animate__bounceInLeft"
+    leave-active-class="animate__hinge"
+  >
+    <li>
+      <label>
+        <input
+          type="checkbox"
+          :checked="todo.done"
+          @change="handleCheck(todo.id)"
+        />
+        <span>{{ todo.title }}</span>
+      </label>
+      <button class="btn btn-danger" @click="handleDelete(todo.id)">
+        删除
+      </button>
+    </li>
+  </transition>
 </template>
 
 <script>
+import 'animate.css'
 export default {
   name: 'Item',
   data() {
@@ -42,6 +52,7 @@ li {
   line-height: 36px;
   padding: 0 5px;
   border-bottom: 1px solid #ddd;
+  background-color: orange;
 }
 
 li label {
@@ -70,7 +81,7 @@ li:last-child {
   border-bottom: none;
 }
 li:hover {
-  background-color: #ddd;
+  background-color: #fff;
 }
 li:hover button {
   display: block;
